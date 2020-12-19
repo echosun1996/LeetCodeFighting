@@ -9,13 +9,13 @@ func bracketsMatch(input string) bool {
 	for _, value := range input {
 		if value == '[' {
 			temp += 1
-		} else if value == ']'{
+		} else if value == ']' {
 			temp -= 1
 		}
 	}
 	if temp != 0 {
 		//println("@ Brackets Temp Value: [",temp,"]")
-		fmt.Printf("@ Brackets Temp Value: [%v]\n",temp)
+		fmt.Printf("@ Brackets Temp Value: [%v]\n", temp)
 		println("@ ERROR: brackets NOT match!")
 		return false
 	}
@@ -32,10 +32,10 @@ func inputFormatChanger(input string) string {
 		return ""
 
 	}
-	for i:=0; i<len(input); i++{
+	for i := 0; i < len(input); i++ {
 		if input[i] == '[' {
 			output[i] = '{'
-		}else if input[i]==']' {
+		} else if input[i] == ']' {
 			output[i] = '}'
 		}
 
@@ -43,7 +43,8 @@ func inputFormatChanger(input string) string {
 	return string(output)
 }
 func main() {
-	input := "[1,2,1"
+
+	input := "[[[[1,1,1],[2,2,2],[3,3,3]]],[0,0],[0,0,2,2,100],[0,0],[2,2],[1,1,2,2,20],[2,2]]"
 	output := inputFormatChanger(input)
 	println(output)
 }
