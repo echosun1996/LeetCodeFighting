@@ -21,7 +21,8 @@ import (
 
 // 解法2 使用map存储了另一个数和它的下标
 // 只需要循环一次就可以完成
-// 时间复杂度：O(n)
+// 时间复杂度：O(n
+
 func twoSum(nums []int, target int) []int {
 	m := make(map[int]int)
 	for i := 0; i < len(nums); i++ {

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="LeetcodeEditor">
+    <option name="projectConfig">
+      <map>
+        <entry key="$PROJECT_DIR$/temp/leetcode/editor/cn/26.删除排序数组中的重复项.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/temp/leetcode/editor/cn/26.删除排序数组中的重复项.go" />
+              <option name="questionId" value="26" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/temp/leetcode/editor/cn/26.删除排序数组中的重复项_test.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/temp/leetcode/editor/cn/26.删除排序数组中的重复项_test.go" />
+              <option name="questionId" value="26" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/temp/leetcode/editor/cn/7.整数反转_test.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/temp/leetcode/editor/cn/7.整数反转_test.go" />
+              <option name="questionId" value="7" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/temp/leetcode/editor/cn/9.回文数_test.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/temp/leetcode/editor/cn/9.回文数_test.go" />
+              <option name="questionId" value="9" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/temp/leetcode/editor/cn/[26]删除排序数组中的重复项.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/temp/leetcode/editor/cn/[26]删除排序数组中的重复项.go" />
+              <option name="questionId" value="26" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="/var/folders/s1/hqtkwf794wjdl9lchjb904zc0000gn/T/leetcode/editor/cn/[1299]将每个元素替换为右侧最大元素.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="/var/folders/s1/hqtkwf794wjdl9lchjb904zc0000gn/T/leetcode/editor/cn/[1299]将每个元素替换为右侧最大元素.java" />
+              <option name="questionId" value="1231" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
