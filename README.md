@@ -9,11 +9,11 @@
 1. 结果保存到笔记本中(以leetcode页面的格式)
 1. 更新README题目列表的“难度”和“状态”信息
 
-# 完成进度
+# 完成进度数组
 
 ## 数组
 
-| Problem Number & Title | Difficulty | Go State | Python State |
+| Problem Number & Title | Difficulty | Go State | Rust State |
 | -------------- | ----- | -------- | ------------ |
 | 1.两数之和       | Easy |  √        |              |
 | 1476.子矩形查询 | Easy |    √       |              |
