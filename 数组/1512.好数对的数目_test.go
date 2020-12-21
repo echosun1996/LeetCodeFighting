@@ -19,7 +19,7 @@ import (
 //}
 
 // 解法2 由于要求是 nums[i] == nums[j]，则答案跟相同数字的个数有关，分析得到带入排列组合公式可以解决。
-// 这里使用了一个大小为100的数组（由于1 <= nums.length <= 100）作为哈希表，temp[i]表示第i个数出现的次数。
+// 这里使用了一个大小为100的数组（由于1 <= nums.length <= 100）作为频次表，temp[i]表示第i个数出现的次数。
 // 而且组合公式C^2_n = n(n-1) / 2
 func numIdenticalPairs(nums []int) int {
 	var temp [100]int

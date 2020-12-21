@@ -3,6 +3,22 @@
   <component name="LeetcodeEditor">
     <option name="projectConfig">
       <map>
+        <entry key="$PROJECT_DIR$/temp/leetcode/editor/cn/1365.有多少小于当前数字的数字_test.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/temp/leetcode/editor/cn/1365.有多少小于当前数字的数字_test.go" />
+              <option name="questionId" value="1482" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/temp/leetcode/editor/cn/1389.按既定顺序创建目标数组_test.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/temp/leetcode/editor/cn/1389.按既定顺序创建目标数组_test.go" />
+              <option name="questionId" value="1505" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/temp/leetcode/editor/cn/26.删除排序数组中的重复项.go">
           <value>
             <LeetcodeEditor>
