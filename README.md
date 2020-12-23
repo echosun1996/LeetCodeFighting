@@ -15,7 +15,7 @@
 
 | Problem Number & Title | Difficulty | Go State | Rust State |
 | -------------- | ----- | -------- | ------------ |
-| 1.两数之和       | Easy |  √        |              |
+| 1.两数之和       | Easy |  √  |  √  |
 | 1476.子矩形查询 | Easy |    √       |              |
 | 1480.一维数组的动态和 | Easy | √ | |
 | 1672.最富有客户的资产总量 | Easy | √ | |
