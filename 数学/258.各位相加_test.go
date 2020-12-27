@@ -1,7 +1,7 @@
 // 258.各位相加 - https://leetcode-cn.com/problems/add-digits
 // By EchoSun
 // 2020-12-27 08:24:26
-package 数学
+package main
 
 import (
 	"reflect"
