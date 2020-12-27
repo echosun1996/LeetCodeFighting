@@ -10,8 +10,8 @@ jobs:
   test:
     strategy:
       matrix:
-        go-version: [1.14.x, 1.15.x]
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        go-version: [1.15.X]
+        os: [ubuntu-latest]
     runs-on: ubuntu-latest
     steps:
       - name: Install Go
@@ -22,7 +22,10 @@ jobs:
       - name: Build
         run: |
           go build 测试工具/2.自动化做题统计工具.go
-      - name: Run
+      - name: SendToGoer
         run: |
           ./2.自动化做题统计工具 ${{ secrets.GoerSCKEY }}
+      - name: SendToRuster
+        run: |
+          ./2.自动化做题统计工具 ${{ secrets.RusterSCKEY }}
 

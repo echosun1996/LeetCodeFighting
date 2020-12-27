@@ -146,7 +146,9 @@ func main() {
 	fileSuffix := [][]string{{"Go", ".go"}, {"Rust", ".rs"}} // 待检测的列表题目以及对应的后缀名
 	SCKEY := ""
 	//wechatMessage := ""
-	var build strings.Builder
+	var messageTitle strings.Builder
+	var messageDetail strings.Builder
+
 	for idx, args := range os.Args {
 		if idx == 1 {
 			SCKEY = args
@@ -156,46 +158,61 @@ func main() {
 
 	for _, dirPathValue := range dirPath {
 		println("#", dirPathValue)
+		messageDetail.WriteString("# " + dirPathValue + "\n")
 		for fileSuffixIndex, fileSuffixValue := range fileSuffix {
-			println("##", fileSuffixValue[0], "做题记录检查中")
+			println("##", fileSuffixValue[0], "做题记录检查结果"+"\n")
+			messageDetail.WriteString("## " + fileSuffixValue[0] + "做题记录检查结果" + "\n")
 			fileNameList := getFileNameList(dirPathValue)
 			readmeDetails := READMEReader(mdPath, dirPathValue)
 			fileNameList, readmeProblemNames, finishSum := stateCheck(fileNameList, readmeDetails, fileSuffixValue)
 			if len(readmeProblemNames) == 0 {
 				println("1. [OK] README中标记为完成的文件已全部添加。")
+				messageDetail.WriteString("1. [OK] README中标记为完成的文件已全部添加。" + "\n")
+
 			} else {
 				println("1. [ERROR] README中如下文件标记为完成，但未找到程序文件:")
+				messageDetail.WriteString("1. [ERROR] README中如下文件标记为完成，但未找到程序文件:" + "\n")
+
 				fmt.Printf("%v\n", readmeProblemNames)
+				for _, value := range readmeProblemNames {
+					messageDetail.WriteString("* " + value + "\n")
+				}
+
 			}
 			if len(fileNameList) == 0 {
 				println("2. [OK] 文件夹中所有文件都被标记为完成。")
+				messageDetail.WriteString("2. [OK] 文件夹中所有文件都被标记为完成。" + "\n")
+
 			} else {
-				println("2. [ERROR] 文件夹[", dirPath, "]中存在如下文件尚未被标记为完成:")
+				println("2. [ERROR] 文件夹[", dirPathValue, "]中存在如下文件尚未被标记为完成:")
+				messageDetail.WriteString("2. [ERROR] 文件夹[" + dirPathValue + "]中存在如下文件尚未被标记为完成:" + "\n")
+
 				fmt.Printf("%v\n", fileNameList)
+				for _, value := range fileNameList {
+					messageDetail.WriteString("* " + value + "\n")
+				}
 			}
-			//print("`", fileSuffixValue[0], " Sum:", finishSum, "`\n")
-			//printStr := fileSuffixValue[0], " Sum:", finishSum,
 			fmt.Printf("%c[4;30;46m[%s]%s%s%d%c[0m\n", 0x1B, dirPathValue, fileSuffixValue[0], ":", finishSum, 0x1B)
 
 			// 拼接发往WeChat的字符串
 			if fileSuffixIndex == 0 {
-				build.WriteString("[" + dirPathValue + "]")
+				messageTitle.WriteString("[" + dirPathValue + "]")
 			}
-			build.WriteString(fileSuffixValue[0] + ":")
-			build.WriteString(strconv.Itoa(finishSum) + ";")
+			messageTitle.WriteString(fileSuffixValue[0] + ":")
+			messageTitle.WriteString(strconv.Itoa(finishSum) + ";")
 		}
 	}
 	if SCKEY != "" {
-		sendToWechat(SCKEY, build.String())
+		sendToWechat(SCKEY, messageTitle.String(), messageDetail.String())
 	}
-	println(build.String())
+	println(messageTitle.String())
 }
 
-func sendToWechat(SCKEY string, message string) {
+func sendToWechat(SCKEY string, messageTitle string, messageDetail string) {
 	//post请求提交application/x-www-form-urlencoded数据
 	form := make(url.Values)
-	form.Set("text", message)
-	form.Add("desp", message)
+	form.Set("text", messageTitle)
+	form.Add("desp", messageDetail)
 	resp, _ := http.PostForm("https://sc.ftqq.com/"+SCKEY+".send", form)
 	body, _ := ioutil.ReadAll(resp.Body)
 	fmt.Printf("Post request with application/x-www-form-urlencoded result: %s\n", string(body))
