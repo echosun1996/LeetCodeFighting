@@ -158,7 +158,7 @@ func main() {
 
 	for _, dirPathValue := range dirPath {
 		println("#", dirPathValue)
-		messageDetail.WriteString("# " + dirPathValue + "\n\n")
+		messageDetail.WriteString("# " + dirPathValue + "\n")
 		for fileSuffixIndex, fileSuffixValue := range fileSuffix {
 			println("##", fileSuffixValue[0], "题型检查结果"+"\n")
 			messageDetail.WriteString("## " + fileSuffixValue[0] + "类型记录检查结果" + "\n")
