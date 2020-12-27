@@ -158,10 +158,10 @@ func main() {
 
 	for _, dirPathValue := range dirPath {
 		println("#", dirPathValue)
-		messageDetail.WriteString("# " + dirPathValue + "\n")
+		messageDetail.WriteString("# " + dirPathValue + "\n\n")
 		for fileSuffixIndex, fileSuffixValue := range fileSuffix {
-			println("##", fileSuffixValue[0], "做题记录检查结果"+"\n")
-			messageDetail.WriteString("## " + fileSuffixValue[0] + "做题记录检查结果" + "\n")
+			println("##", fileSuffixValue[0], "题型检查结果"+"\n")
+			messageDetail.WriteString("## " + fileSuffixValue[0] + "类型记录检查结果" + "\n")
 			fileNameList := getFileNameList(dirPathValue)
 			readmeDetails := READMEReader(mdPath, dirPathValue)
 			fileNameList, readmeProblemNames, finishSum := stateCheck(fileNameList, readmeDetails, fileSuffixValue)
@@ -193,6 +193,7 @@ func main() {
 				}
 			}
 			fmt.Printf("%c[4;30;46m[%s]%s%s%d%c[0m\n", 0x1B, dirPathValue, fileSuffixValue[0], ":", finishSum, 0x1B)
+			messageDetail.WriteString("[" + dirPathValue + "]类型的题目使用[" + fileSuffixValue[0] + "]语言已完成[" + strconv.Itoa(finishSum) + "道。")
 
 			// 拼接发往WeChat的字符串
 			if fileSuffixIndex == 0 {
