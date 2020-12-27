@@ -1,15 +1,28 @@
 /// 解法一
 /// 暴力破解，两层循环，将index[i]位置后面的数通通后移一位，在index[i]位置插入num[i]
+//struct Solution {
+//}
+//impl Solution {
+//    pub fn create_target_array(nums: Vec<i32>, index: Vec<i32>) -> Vec<i32> {
+//        let mut result = vec![0;nums.len()];
+//        for i in 0 .. nums.len() {
+//            for j in index[i] as usize .. i{
+//                result[i - j + index[i] as usize] = result[i - j + index[i]  as usize - 1];
+//            }
+//            result[index[i] as usize] = nums[i];
+//        }
+//        result
+//    }
+//}
+
+/// 解法二，直接用rust自带函数，在特定位置插入
 struct Solution {
 }
 impl Solution {
     pub fn create_target_array(nums: Vec<i32>, index: Vec<i32>) -> Vec<i32> {
-        let mut result = vec![0;nums.len()];
-        for i in 0 .. nums.len() {
-            for j in index[i] as usize .. i{
-                result[i - j + index[i] as usize] = result[i - j + index[i]  as usize - 1];
-            }
-            result[index[i] as usize] = nums[i];
+        let mut result = Vec::new();
+        for i in 0..nums.len() {
+            result.insert(index[i] as usize, nums[i]);
         }
         result
     }
