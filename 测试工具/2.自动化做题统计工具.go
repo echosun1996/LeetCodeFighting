@@ -193,7 +193,7 @@ func main() {
 				}
 			}
 			//fmt.Printf("%c[4;30;46m[%s]%s%s%d%c[0m\n", 0x1B, dirPathValue, fileSuffixValue[0], ":", finishSum, 0x1B)
-			messageDetail.WriteString("\n**[" + dirPathValue + "]类型的题目使用[" + fileSuffixValue[0] + "]语言已完成[" + strconv.Itoa(finishSum) + "道。**\n\n")
+			messageDetail.WriteString("\n>[**" + dirPathValue + "**]类型的题目使用[**" + fileSuffixValue[0] + "**]语言已完成[**" + strconv.Itoa(finishSum) + "**道。\n\n")
 
 			// 拼接发往WeChat的字符串
 			if fileSuffixIndex == 0 {
