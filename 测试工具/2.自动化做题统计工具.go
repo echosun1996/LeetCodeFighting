@@ -192,7 +192,7 @@ func main() {
 					messageDetail.WriteString("* " + value + "\n")
 				}
 			}
-			fmt.Printf("%c[4;30;46m[%s]%s%s%d%c[0m\n", 0x1B, dirPathValue, fileSuffixValue[0], ":", finishSum, 0x1B)
+			//fmt.Printf("%c[4;30;46m[%s]%s%s%d%c[0m\n", 0x1B, dirPathValue, fileSuffixValue[0], ":", finishSum, 0x1B)
 			messageDetail.WriteString("[" + dirPathValue + "]类型的题目使用[" + fileSuffixValue[0] + "]语言已完成[" + strconv.Itoa(finishSum) + "道。")
 
 			// 拼接发往WeChat的字符串
