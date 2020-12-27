@@ -1,8 +1,5 @@
-# main.yml
-# 一个 workflow，名字为Github Action Example
-name: Github Action Example
+name: send leetcode message to wechat user
 
-# 触发 workflow 的事件
 on:
   push:
 
