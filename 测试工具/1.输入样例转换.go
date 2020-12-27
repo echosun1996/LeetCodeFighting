@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
 
 // bracketsMatch 括号匹配
 // 职匹配中括号
@@ -43,8 +47,9 @@ func inputFormatChanger(input string) string {
 	return string(output)
 }
 func main() {
-
-	input := "[[[[1,1,1],[2,2,2],[3,3,3]]],[0,0],[0,0,2,2,100],[0,0],[2,2],[1,1,2,2,20],[2,2]]"
-	output := inputFormatChanger(input)
+	input := bufio.NewScanner(os.Stdin)
+	input.Scan()
+	inputText := input.Text()
+	output := inputFormatChanger(inputText)
 	println(output)
 }
