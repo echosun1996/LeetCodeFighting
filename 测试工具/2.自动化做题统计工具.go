@@ -158,20 +158,20 @@ func main() {
 
 	for _, dirPathValue := range dirPath {
 		println("#", dirPathValue)
-		messageDetail.WriteString("# " + dirPathValue + "\n")
+		messageDetail.WriteString("# " + dirPathValue + "\n\n")
 		for fileSuffixIndex, fileSuffixValue := range fileSuffix {
 			println("##", fileSuffixValue[0], "题型检查结果"+"\n")
-			messageDetail.WriteString("## " + fileSuffixValue[0] + "类型记录检查结果" + "\n")
+			messageDetail.WriteString("## " + fileSuffixValue[0] + "类型记录检查结果" + "\n\n")
 			fileNameList := getFileNameList(dirPathValue)
 			readmeDetails := READMEReader(mdPath, dirPathValue)
 			fileNameList, readmeProblemNames, finishSum := stateCheck(fileNameList, readmeDetails, fileSuffixValue)
 			if len(readmeProblemNames) == 0 {
 				println("1. [OK] README中标记为完成的文件已全部添加。")
-				messageDetail.WriteString("1. [OK] README中标记为完成的文件已全部添加。" + "\n")
+				messageDetail.WriteString("1. [OK] README中标记为完成的文件已全部添加。" + "\n\n")
 
 			} else {
 				println("1. [ERROR] README中如下文件标记为完成，但未找到程序文件:")
-				messageDetail.WriteString("1. [ERROR] README中如下文件标记为完成，但未找到程序文件:" + "\n")
+				messageDetail.WriteString("1. [ERROR] README中如下文件标记为完成，但未找到程序文件:" + "\n\n")
 
 				fmt.Printf("%v\n", readmeProblemNames)
 				for _, value := range readmeProblemNames {
@@ -181,7 +181,7 @@ func main() {
 			}
 			if len(fileNameList) == 0 {
 				println("2. [OK] 文件夹中所有文件都被标记为完成。")
-				messageDetail.WriteString("2. [OK] 文件夹中所有文件都被标记为完成。" + "\n")
+				messageDetail.WriteString("2. [OK] 文件夹中所有文件都被标记为完成。" + "\n\n")
 
 			} else {
 				println("2. [ERROR] 文件夹[", dirPathValue, "]中存在如下文件尚未被标记为完成:")
@@ -193,7 +193,7 @@ func main() {
 				}
 			}
 			//fmt.Printf("%c[4;30;46m[%s]%s%s%d%c[0m\n", 0x1B, dirPathValue, fileSuffixValue[0], ":", finishSum, 0x1B)
-			messageDetail.WriteString("[" + dirPathValue + "]类型的题目使用[" + fileSuffixValue[0] + "]语言已完成[" + strconv.Itoa(finishSum) + "道。\n")
+			messageDetail.WriteString("\n**[" + dirPathValue + "]类型的题目使用[" + fileSuffixValue[0] + "]语言已完成[" + strconv.Itoa(finishSum) + "道。**\n\n")
 
 			// 拼接发往WeChat的字符串
 			if fileSuffixIndex == 0 {
