@@ -9,13 +9,13 @@
 1. 结果保存到笔记本中(以leetcode页面的格式)
 1. 更新README题目列表的“难度”和“状态”信息
 
-# 完成进度数组
+## 完成进度数组
 
-## 数组
+### 数组
 
 | Problem Number & Title | Difficulty | Go State | Rust State |
 | -------------- | ----- | -------- | ------------ |
-| 1.两数之和       | Easy | √ | √ |
+| 1.两数之和 | Easy | √ | √ |
 | 1476.子矩形查询 | Easy | √ |  |
 | 1480.一维数组的动态和 | Easy | √ | |
 | 1672.最富有客户的资产总量 | Easy | √ | |
@@ -41,7 +41,36 @@
 |  |  | | |
 |  |  | | |
 
-## 数学
+### 数学
 | Problem Number & Title | Difficulty | Go State | Rust State |
 | -------------- | ----- | -------- | ------------ |
 | 258.各位相加 | Medium | √ | √ |
+
+
+## 疑难问题
+### 1. git拉取失败
+
+运行`git pull`时报如下错误
+
+```shell
+git pull
+# remote: Enumerating objects: 21, done.
+# remote: Counting objects: 100% (21/21), done.
+# remote: Compressing objects: 100% (9/9), done.
+# remote: Total 15 (delta 8), reused 13 (delta 6), pack-reused 0
+# error: insufficient permission for adding an object to repository database .git/objects
+# fatal: failed to write object
+# fatal: unpack-objects failed
+```
+
+这是出现了权限问题，需要执行：
+
+```shell
+cd .git/objects
+
+ll | grep root  # 可以看到许多权限错误的文件
+
+sudo chown -Rv <用户名> *
+
+ll | grep root  # 权限错误的文件消失
+```

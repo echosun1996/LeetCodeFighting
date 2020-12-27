@@ -1,0 +1,28 @@
+# main.yml
+# 一个 workflow，名字为Github Action Example
+name: Github Action Example
+
+# 触发 workflow 的事件
+on:
+  push:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        go-version: [1.14.x, 1.15.x]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go-version }}
+      - uses: actions/checkout@master
+      - name: Build
+        run: |
+          go build 测试工具/2.自动化做题统计工具.go
+      - name: Run
+        run: |
+          ./2.自动化做题统计工具 ${{ secrets.GoerSCKEY }}
+
