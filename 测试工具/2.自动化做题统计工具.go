@@ -33,8 +33,6 @@ func READMEReader(readmePath string, problemType string) [][]string {
 	problemType = "### " + problemType // 在readme中，题型是三级标题
 	var readmeDetails [][]string
 
-	var count int = 0
-
 	fin, err := os.OpenFile(readmePath, os.O_RDONLY, 0)
 	if err != nil {
 		panic(err)
@@ -48,7 +46,6 @@ func READMEReader(readmePath string, problemType string) [][]string {
 		if err != nil || err == io.EOF {
 			break
 		}
-		count++
 		line = strings.Replace(line, "\f", "", -1)
 
 		if find := strings.Contains(line, problemType); find {
@@ -62,7 +59,7 @@ func READMEReader(readmePath string, problemType string) [][]string {
 		if startRecord {
 
 			if strings.Contains(line, "Problem Number") || strings.Contains(line, ".") {
-				// 处理标题
+				// 处理标题行和带有题目的行
 				line = strings.ReplaceAll(line, " ", "") // 去掉空格
 				splitResult := strings.Split(line, "|")
 
@@ -78,6 +75,8 @@ func READMEReader(readmePath string, problemType string) [][]string {
 	return readmeDetails
 }
 
+// getColumnNumber
+// 获取对应语言在readme文件中的列号
 func getColumnNumber(readmeDetails [][]string, fileSuffix []string) int {
 	for ix, value := range readmeDetails[0] {
 		if strings.Contains(value, fileSuffix[0]) {
@@ -87,6 +86,8 @@ func getColumnNumber(readmeDetails [][]string, fileSuffix []string) int {
 	return -1
 }
 
+// getProblemNameFromReadme
+// 从readme中获取对应语言所完成的题目列表
 func getProblemNameFromReadme(readmeDetails [][]string, fileSuffix []string) []string {
 	var problemNames []string
 
@@ -127,7 +128,7 @@ func stateCheck(fileNameList []string, readmeDetails [][]string, fileSuffix []st
 			if strings.EqualFold(fileProblemNum, readmeProblemNum) {
 				fileNameList = append(fileNameList[:i], fileNameList[i+1:]...)
 				readmeProblemNames = append(readmeProblemNames[:j], readmeProblemNames[j+1:]...)
-				i = -1
+				i = -1 // 从头开始寻找
 				fileNameListSize--
 				readmeProblemNamesSize--
 				finishSum++
@@ -144,8 +145,7 @@ func main() {
 	dirPath := []string{"数组", "数学"}                          // dirPath既是文件夹的名字，也是题目所属分类的名字
 	mdPath := "README.md"                                    // README的路径
 	fileSuffix := [][]string{{"Go", ".go"}, {"Rust", ".rs"}} // 待检测的列表题目以及对应的后缀名
-	SCKEY := ""
-	//wechatMessage := ""
+	SCKEY := ""                                              // 从 github action 中获取的KEY，用于向WeChat发送通知
 	var messageTitle strings.Builder
 	var messageDetail strings.Builder
 
@@ -167,32 +167,26 @@ func main() {
 			fileNameList, readmeProblemNames, finishSum := stateCheck(fileNameList, readmeDetails, fileSuffixValue)
 			if len(readmeProblemNames) == 0 {
 				println("1. [OK] README中标记为完成的文件已全部添加。")
-				messageDetail.WriteString("1. [OK] README中标记为完成的文件已全部添加。" + "\n\n")
-
+				messageDetail.WriteString("1. <font color=#008000>[OK]</font> README中标记为完成的文件已全部添加。" + "\n\n")
 			} else {
 				println("1. [ERROR] README中如下文件标记为完成，但未找到程序文件:")
-				messageDetail.WriteString("1. [ERROR] README中如下文件标记为完成，但未找到程序文件:" + "\n\n")
-
+				messageDetail.WriteString("1. <font color=red>[ERROR]</font> README中如下文件标记为完成，但未找到程序文件:" + "\n\n")
 				fmt.Printf("%v\n", readmeProblemNames)
 				for _, value := range readmeProblemNames {
 					messageDetail.WriteString("* " + value + "\n")
 				}
-
 			}
 			if len(fileNameList) == 0 {
 				println("2. [OK] 文件夹中所有文件都被标记为完成。")
-				messageDetail.WriteString("2. [OK] 文件夹中所有文件都被标记为完成。" + "\n\n")
-
+				messageDetail.WriteString("2. <font color=#008000>[OK]</font> 文件夹中所有文件都被标记为完成。" + "\n\n")
 			} else {
 				println("2. [ERROR] 文件夹[", dirPathValue, "]中存在如下文件尚未被标记为完成:")
-				messageDetail.WriteString("2. [ERROR] 文件夹[" + dirPathValue + "]中存在如下文件尚未被标记为完成:" + "\n")
-
+				messageDetail.WriteString("2. <font color=red>[ERROR]</font> 文件夹[" + dirPathValue + "]中存在如下文件尚未被标记为完成:" + "\n\n")
 				fmt.Printf("%v\n", fileNameList)
 				for _, value := range fileNameList {
 					messageDetail.WriteString("* " + value + "\n")
 				}
 			}
-			//fmt.Printf("%c[4;30;46m[%s]%s%s%d%c[0m\n", 0x1B, dirPathValue, fileSuffixValue[0], ":", finishSum, 0x1B)
 			messageDetail.WriteString("\n>[**" + dirPathValue + "**]类型的题目使用[**" + fileSuffixValue[0] + "**]语言已完成[**" + strconv.Itoa(finishSum) + "**]道。\n\n")
 
 			// 拼接发往WeChat的字符串
@@ -209,6 +203,7 @@ func main() {
 	println(messageTitle.String())
 }
 
+// 以post请求形式发送消息到WeChat
 func sendToWechat(SCKEY string, messageTitle string, messageDetail string) {
 	//post请求提交application/x-www-form-urlencoded数据
 	form := make(url.Values)
@@ -216,9 +211,10 @@ func sendToWechat(SCKEY string, messageTitle string, messageDetail string) {
 	form.Add("desp", messageDetail)
 	resp, _ := http.PostForm("https://sc.ftqq.com/"+SCKEY+".send", form)
 	body, _ := ioutil.ReadAll(resp.Body)
-	fmt.Printf("Post request with application/x-www-form-urlencoded result: %s\n", string(body))
+	fmt.Printf("Post request result: %s\n", string(body))
 }
 
+// 以get请求形式发送消息到WeChat
 //func sendToWechat(SCKEY string, message string) {
 //	resp, err := http.Get("https://sc.ftqq.com/" + SCKEY + ".send?text=" + message)
 //	if err != nil {
