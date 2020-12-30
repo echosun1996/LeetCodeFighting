@@ -153,8 +153,7 @@ func main() {
 
 	for idx, args := range os.Args {
 		if idx == 1 {
-			//SCKEY = args
-			_ = args
+			SCKEY = args
 			println("[发现SCKEY!]")
 		}
 	}
@@ -163,14 +162,11 @@ func main() {
 	cmd := exec.Command("git", "config", "--global", "core.quotepath", "false") // 设置git显示中文
 	err := cmd.Run()
 	if err != nil {
-		log.Fatalf("cmd.Run() failed with %s\n", err)
+		log.Fatalf("设置git显示中文失败: %s\n", err)
 	}
 	cmd = exec.Command("git", "pull", "--unshallow") //  转换存储库为完整存储库
-	err = cmd.Run()
-	if err != nil {
-		log.Fatalf("cmd.Run() failed with %s\n", err)
-	}
-	cmd = exec.Command("git", "log", "--stat", "--oneline", "-1")
+	_ = cmd.Run()
+	cmd = exec.Command("git", "log", "--stat", "--oneline", "-1") // 精简显示最后一次commit日志
 	buf, _ := cmd.CombinedOutput()
 	messageDetail.WriteString("# 提交日志\n\n```\n")
 	messageDetail.Write(buf)
