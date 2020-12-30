@@ -164,7 +164,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("cmd.Run() failed with %s\n", err)
 	}
-	cmd = exec.Command("git", "log", "--name-status", "-1")
+	cmd = exec.Command("git", "log", "--stat", "-1")
 	buf, _ := cmd.CombinedOutput()
 	messageDetail.WriteString("# 提交日志\n\n```\n")
 	messageDetail.Write(buf)
