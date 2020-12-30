@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -158,7 +159,12 @@ func main() {
 	}
 
 	// 添加提交日志
-	cmd := exec.Command("git", "log", "--name-status", "-1")
+	cmd := exec.Command("git", "config", "--global", "core.quotepath", "false") // 设置git显示中文
+	err := cmd.Run()
+	if err != nil {
+		log.Fatalf("cmd.Run() failed with %s\n", err)
+	}
+	cmd = exec.Command("git", "log", "--name-status", "-1")
 	buf, _ := cmd.CombinedOutput()
 	messageDetail.WriteString("# 提交日志\n\n```\n")
 	messageDetail.Write(buf)
