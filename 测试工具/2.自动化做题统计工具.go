@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"os/exec"
 	"strconv"
 	"strings"
 )
@@ -155,6 +156,14 @@ func main() {
 			println("[发现SCKEY!]")
 		}
 	}
+
+	// 添加提交日志
+	cmd := exec.Command("git", "log", "--name-status", "-1")
+	buf, _ := cmd.CombinedOutput()
+	messageDetail.WriteString("# 提交日志\n\n```\n")
+	messageDetail.Write(buf)
+	messageDetail.WriteString("\n```\n")
+	println(messageDetail.String())
 
 	for _, dirPathValue := range dirPath {
 		println("#", dirPathValue)
