@@ -8,19 +8,17 @@ import (
 	"testing"
 )
 
-// 解法1
+// 解法1 从外层开始，逐渐向内层循环，外层都是四个数相加，而最内层需要注意区分矩阵大小为奇数还是偶数，偶数依旧是四个数相加，奇数只加中心一个数。
 func diagonalSum(mat [][]int) int {
-	//print(7 / x2)
 	n := len(mat[0])
-	//println(n)
 	ret := 0
-	for i := 0; i <= n/2; i++ {
+	// 大小为3的矩阵，循环到下标为1；大小为4的矩阵，循环到下标也为1
+	for i := 0; i <= (n-1)/2; i++ {
+		// 如果矩阵大小是奇数（比如3），且循环到最后（即矩阵正中间位置），则该元素只添加一次。
 		if i == n/2 {
 			ret += mat[i][i]
-			println(ret)
 		} else {
 			ret += mat[i][i] + mat[i][n-1-i] + mat[n-1-i][i] + mat[n-1-i][n-1-i]
-			println(ret)
 		}
 	}
 	return ret

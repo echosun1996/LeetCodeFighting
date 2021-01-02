@@ -177,7 +177,7 @@ func main() {
 		println("#", dirPathValue)
 		messageDetail.WriteString("# " + dirPathValue + "\n\n")
 		for fileSuffixIndex, fileSuffixValue := range fileSuffix {
-			println("##", fileSuffixValue[0], "题型检查结果"+"\n")
+			println("##", fileSuffixValue[0], "题型检查结果")
 			messageDetail.WriteString("## " + fileSuffixValue[0] + "类型记录检查结果" + "\n\n")
 			fileNameList := getFileNameList(dirPathValue)
 			readmeDetails := READMEReader(mdPath, dirPathValue)
