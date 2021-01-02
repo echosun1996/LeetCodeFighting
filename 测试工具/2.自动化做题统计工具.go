@@ -188,7 +188,7 @@ func main() {
 			} else {
 				println("1. [ERROR] README中如下文件标记为完成，但未找到程序文件:")
 				messageDetail.WriteString("1. <font color=red>[ERROR]</font> README中如下文件标记为完成，但未找到程序文件:" + "\n\n")
-				fmt.Printf("%v\n", readmeProblemNames)
+				fmt.Printf("%v\n\n", readmeProblemNames)
 				for _, value := range readmeProblemNames {
 					messageDetail.WriteString("* " + value + "\n")
 				}
@@ -199,7 +199,7 @@ func main() {
 			} else {
 				println("2. [ERROR] 文件夹[", dirPathValue, "]中存在如下文件尚未被标记为完成:")
 				messageDetail.WriteString("2. <font color=red>[ERROR]</font> 文件夹[" + dirPathValue + "]中存在如下文件尚未被标记为完成:" + "\n\n")
-				fmt.Printf("%v\n", fileNameList)
+				fmt.Printf("%v\n\n", fileNameList)
 				for _, value := range fileNameList {
 					messageDetail.WriteString("* " + value + "\n")
 				}

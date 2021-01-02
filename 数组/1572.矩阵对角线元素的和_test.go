@@ -10,15 +10,17 @@ import (
 
 // 解法1
 func diagonalSum(mat [][]int) int {
-	//print(6 / 2)
+	//print(7 / x2)
 	n := len(mat[0])
-	println(n)
+	//println(n)
 	ret := 0
 	for i := 0; i <= n/2; i++ {
-		if i == n-i {
+		if i == n/2 {
 			ret += mat[i][i]
+			println(ret)
 		} else {
-			ret += mat[i][i] + mat[i][n-i] + mat[n-i][i] + mat[n-i][n-i]
+			ret += mat[i][i] + mat[i][n-1-i] + mat[n-1-i][i] + mat[n-1-i][n-1-i]
+			println(ret)
 		}
 	}
 	return ret
