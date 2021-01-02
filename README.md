@@ -43,7 +43,10 @@
 |  |  | | | |
 |  |  | | | |
 |  |  | | | |
-
+###字符串
+| Problem Number & Title | Description | Difficulty | Go State | Rust State |
+| -------------- | ----- | ----- | -------- | ------------ |
+| 32.最长有效括号| | Easy | | √ |
 ### 数学
 | Problem Number & Title | Description| Difficulty | Go State | Rust State |
 | -------------- | ----- | ----- | -------- | ------------ |
