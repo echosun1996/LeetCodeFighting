@@ -1,7 +1,9 @@
+// 1476.子矩形查询 - https://leetcode-cn.com/problems/subrectangle-queries
+// By EchoSun
+
 package main
 
 import (
-	"reflect"
 	"testing"
 )
 
@@ -35,16 +37,6 @@ func (this *SubrectangleQueries) GetValue(row int, col int) int {
 
 // 测试函数
 
-func Apply(f interface{}, args []interface{}) []reflect.Value {
-	fun := reflect.ValueOf(f)
-	in := make([]reflect.Value, len(args))
-	for k, param := range args {
-		in[k] = reflect.ValueOf(param)
-	}
-	r := fun.Call(in)
-	return r
-
-}
 func TestProblem1476(t *testing.T) {
 	// 测试1
 	input := [][]int{{1, 2, 1}, {4, 3, 4}, {3, 2, 1}, {1, 1, 1}}
