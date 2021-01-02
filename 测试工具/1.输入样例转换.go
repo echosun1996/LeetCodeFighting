@@ -48,8 +48,15 @@ func inputFormatChanger(input string) string {
 }
 func main() {
 	input := bufio.NewScanner(os.Stdin)
-	input.Scan()
-	inputText := input.Text()
+	inputText := ""
+	for input.Scan() {
+		temp := input.Text()
+		if temp == "" {
+			break
+		}
+		inputText += temp
+	}
+
 	output := inputFormatChanger(inputText)
 	println(output)
 }
