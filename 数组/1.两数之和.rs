@@ -44,7 +44,6 @@ impl Solution {
     }
 }
 
-
 /// main方法测试
 fn main() {
     let nums = vec![3,2,4];
