@@ -144,7 +144,7 @@ func stateCheck(fileNameList []string, readmeDetails [][]string, fileSuffix []st
 // main 本程序用于在做题列表和文件列表中相互筛选，以选出没有被标记或仅被标记的题目。
 // 通过本程序，也可以统计完成题目数量。
 func main() {
-	dirPath := []string{"数组", "数学"}                          // dirPath既是文件夹的名字，也是题目所属分类的名字
+	dirPath := []string{"数组", "数学", "字符串"}                   // dirPath既是文件夹的名字，也是题目所属分类的名字
 	mdPath := "README.md"                                    // README的路径
 	fileSuffix := [][]string{{"Go", ".go"}, {"Rust", ".rs"}} // 待检测的列表题目以及对应的后缀名
 	SCKEY := ""                                              // 从 github action 中获取的KEY，用于向WeChat发送通知
