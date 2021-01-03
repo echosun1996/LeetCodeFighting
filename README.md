@@ -44,7 +44,7 @@
 |  |  | | | |
 |  |  | | | |
 |  |  | | | |
-###字符串
+### 字符串
 | Problem Number & Title | Description | Difficulty | Go State | Rust State |
 | -------------- | ----- | ----- | -------- | ------------ |
 | 32.最长有效括号| | Medium | | √ |
